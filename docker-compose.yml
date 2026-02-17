@@ -14,7 +14,7 @@ services:
       NODE_ENV: production
       PORT: 3026
       DB_PATH: /data/analytics.db
-      REDIS_URL: redis://host.docker.internal:6380
+      REDIS_URL: redis://host.docker.internal:6386
       LOG_PATH: /var/log/nginx/access.log
     restart: unless-stopped
 
