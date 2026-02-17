@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: webdev-analytics
+    ports:
+      - "3026:3026"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /var/log/nginx/access.log:/var/log/nginx/access.log:ro
+      - analytics-data:/data
+    environment:
+      NODE_ENV: production
+      PORT: 3026
+      DB_PATH: /data/analytics.db
+      REDIS_URL: redis://host.docker.internal:6380
+      LOG_PATH: /var/log/nginx/access.log
+    restart: unless-stopped
+
+volumes:
+  analytics-data:
